@@ -1,6 +1,7 @@
 package com.peterstaranchuk.heroes_catalog
 
 import com.google.gson.annotations.SerializedName
+import com.peterstaranchuk.heroes_catalog.model.ComicsModel
 
 class ComicsResponse(
     @SerializedName("offset") val offset: Int,

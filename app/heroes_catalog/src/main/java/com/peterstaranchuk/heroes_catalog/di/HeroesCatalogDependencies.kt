@@ -1,5 +1,8 @@
 package com.peterstaranchuk.heroes_catalog
 
+import com.peterstaranchuk.heroes_catalog.mappers.ComicsModelToPresentationMapper
+import com.peterstaranchuk.heroes_catalog.model.ComicsApi
+import com.peterstaranchuk.heroes_catalog.presentation.HeroesCatalogViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module

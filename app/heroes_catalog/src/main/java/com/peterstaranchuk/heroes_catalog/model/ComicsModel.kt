@@ -1,4 +1,4 @@
-package com.peterstaranchuk.heroes_catalog
+package com.peterstaranchuk.heroes_catalog.model
 
 import com.google.gson.annotations.SerializedName
 

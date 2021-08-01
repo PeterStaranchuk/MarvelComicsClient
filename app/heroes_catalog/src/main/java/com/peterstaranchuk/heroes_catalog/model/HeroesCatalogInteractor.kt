@@ -1,6 +1,7 @@
 package com.peterstaranchuk.heroes_catalog
 
 import com.peterstaranchuk.common.SourcedData
+import com.peterstaranchuk.heroes_catalog.model.ComicsModel
 
 interface HeroesCatalogInteractor {
     suspend fun fetchComics(): SourcedData<List<ComicsModel>>

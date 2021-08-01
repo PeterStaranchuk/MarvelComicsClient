@@ -3,6 +3,9 @@ package com.peterstaranchuk.heroes_catalog
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.peterstaranchuk.common.DataSource
 import com.peterstaranchuk.common.SourcedData
+import com.peterstaranchuk.heroes_catalog.mappers.ComicsModelToPresentationMapper
+import com.peterstaranchuk.heroes_catalog.model.ComicsModel
+import com.peterstaranchuk.heroes_catalog.presentation.HeroesCatalogViewModel
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers

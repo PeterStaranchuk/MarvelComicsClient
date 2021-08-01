@@ -1,11 +1,13 @@
-package com.peterstaranchuk.heroes_catalog
+package com.peterstaranchuk.heroes_catalog.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.peterstaranchuk.common.BaseFragment
+import com.peterstaranchuk.heroes_catalog.presentation.HeroesCatalogViewModel
 import com.peterstaranchuk.heroes_catalog.databinding.FragmentCatalogBinding
+import com.peterstaranchuk.heroes_catalog.heroesCatalogModule
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import org.koin.core.inject

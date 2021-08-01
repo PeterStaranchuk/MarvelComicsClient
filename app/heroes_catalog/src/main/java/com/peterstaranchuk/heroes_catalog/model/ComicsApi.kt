@@ -1,5 +1,6 @@
-package com.peterstaranchuk.heroes_catalog
+package com.peterstaranchuk.heroes_catalog.model
 
+import com.peterstaranchuk.heroes_catalog.ComicsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
