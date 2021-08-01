@@ -42,9 +42,9 @@ class HeroesCatalogViewModelTest {
     @Test
     fun should_load_comics_list_when_screen_started() {
         coEvery { interactor.fetchComics() } returns SourcedData(listOf(
-            ComicsModel(id = 1, imageUrl = ""),
-            ComicsModel(id = 2, imageUrl = ""),
-            ComicsModel(id = 3, imageUrl = "")
+            ComicsModel(1, "", "", "", 0, 0, "", ""),
+            ComicsModel(2, "", "", "", 0, 0, "", ""),
+            ComicsModel(3, "", "", "", 0, 0, "", ""),
         ), DataSource.CLOUD)
 
         vm.onScreenStarted()
