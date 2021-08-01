@@ -26,4 +26,5 @@ ext {
     buildToolsVersion = '28.0.3'
     koinVer = '2.0.1'
     gsonVer = '2.8.5'
+    coroutinesVersion = "1.5.1"
 }
