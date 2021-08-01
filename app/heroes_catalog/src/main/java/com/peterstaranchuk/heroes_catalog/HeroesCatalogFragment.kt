@@ -28,4 +28,9 @@ class HeroesCatalogFragment : BaseFragment() {
         val binding = FragmentCatalogBinding.inflate(LayoutInflater.from(context), container, false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        vm.onScreenStarted()
+    }
 }

@@ -7,6 +7,7 @@ import retrofit2.Retrofit
 
 val heroesCatalogModule: Module = module {
     factory<HeroesCatalogInteractor> { HeroesCatalogInteractorImpl(get()) }
+    factory<ComicsRepository> { ComicsRepositoryImpl(get()) }
     factory { ComicsModelToPresentationMapper() }
     factory<ComicsApi> {
         val retrofit: Retrofit = get()

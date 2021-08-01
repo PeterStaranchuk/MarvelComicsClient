@@ -10,8 +10,8 @@ interface ComicsRepository {
 class ComicsRepositoryImpl(private val comicsApi: ComicsApi) : ComicsRepository {
 
     override suspend fun fetchComics(): SourcedData<List<ComicsModel>> {
-        val comics = comicsApi.getComics(100, 0)
-        return SourcedData(comics, DataSource.CLOUD)
+        val response = comicsApi.getComics(100, 0)
+        return SourcedData(response.data.results, DataSource.CLOUD)
     }
 
 }
