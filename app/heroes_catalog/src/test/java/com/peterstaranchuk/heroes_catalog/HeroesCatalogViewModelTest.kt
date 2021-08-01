@@ -55,4 +55,59 @@ class HeroesCatalogViewModelTest {
 
         Assert.assertEquals(3, vm.observeComics().value?.size)
     }
+
+    @Test
+    fun should_show_progress_when_screen_started() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_hide_progress_and_show_the_list_when_comics_loaded() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_show_network_error_state_if_app_cannot_get_comics_because_of_internet_connection() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_show_general_error_state_if_app_cannot_get_comics_because_of_unknown_reason() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_redirect_on_detail_view_when_comics_clicked() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_redirect_on_the_search_view_when_user_tap_search() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_redirect_on_series_page_when_series_icon_clicked_in_bottom_menu() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_redirect_on_series_page_when_creators_icon_clicked_in_bottom_menu() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_reload_screen_when_user_tap_reload_on_error_state() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_show_progress_bar_during_reload_on_error_state() {
+        Assert.assertEquals(true, false)
+    }
+
+    @Test
+    fun should_hide_progress_bar_when_comics_fetched_after_reload() {
+        Assert.assertEquals(true, false)
+    }
 }
