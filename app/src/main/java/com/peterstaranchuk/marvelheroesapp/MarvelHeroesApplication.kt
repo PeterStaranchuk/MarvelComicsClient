@@ -1,6 +1,7 @@
 package com.peterstaranchuk.marvelheroesapp
 
 import android.app.Application
+import com.peterstaranchuk.marvelheroesapp.dependency_injection.dispatchersModule
 import com.peterstaranchuk.marvelheroesapp.dependency_injection.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -14,7 +15,7 @@ class MarvelHeroesApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MarvelHeroesApplication)
-            modules(networkModule)
+            modules(listOf(networkModule, dispatchersModule))
         }
     }
 }

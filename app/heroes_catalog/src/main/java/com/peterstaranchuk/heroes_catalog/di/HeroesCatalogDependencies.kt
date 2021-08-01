@@ -16,5 +16,5 @@ val heroesCatalogModule: Module = module {
         val retrofit: Retrofit = get()
         retrofit.create(ComicsApi::class.java)
     }
-    viewModel { HeroesCatalogViewModel(get(), get()) }
+    viewModel { HeroesCatalogViewModel(get(), get(), get(), get()) }
 }

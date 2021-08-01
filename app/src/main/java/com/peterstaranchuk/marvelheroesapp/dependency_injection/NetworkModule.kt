@@ -1,11 +1,12 @@
 package com.peterstaranchuk.marvelheroesapp.dependency_injection
 
 import android.util.Log
-import androidx.compose.ui.text.toLowerCase
 import com.google.gson.Gson
 import com.peterstaranchuk.common.HttpKeys
 import com.peterstaranchuk.common.NetworkConstants
 import com.peterstaranchuk.marvelheroesapp.BuildConfig
+import com.peterstaranchuk.marvelheroesapp.ui.theme.NetworkHelper
+import com.peterstaranchuk.marvelheroesapp.ui.theme.NetworkHelperImpl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,7 +15,6 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 val networkModule: Module = module {
@@ -66,5 +66,7 @@ val networkModule: Module = module {
     }
 
     single { Gson() }
+
+    factory<NetworkHelper> { NetworkHelperImpl() }
 
 }
