@@ -40,7 +40,7 @@ class HeroesCatalogFragment : BaseFragment() {
                 Row {
                     LazyVerticalGrid(content = {
                         items(count = comics.size) { index ->
-                            ItemComicsView(comicsPresentation = comics[index])
+                            ItemComics(comicsPresentation = comics[index])
                         }
                     }, cells = GridCells.Fixed(2))
                 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="item_comics_title">Title</string>
+    <string name="item_comics_description">Description</string>
+    <string name="item_comics_empty_description_info">No description</string>
+</resources>

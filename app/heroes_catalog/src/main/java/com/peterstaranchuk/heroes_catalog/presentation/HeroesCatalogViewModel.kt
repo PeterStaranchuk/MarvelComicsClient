@@ -1,10 +1,10 @@
 package com.peterstaranchuk.heroes_catalog.presentation
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.peterstaranchuk.common.DispatchersHolder
+import com.peterstaranchuk.common.NetworkConstants
 import com.peterstaranchuk.common.SingleLiveEvent
 import com.peterstaranchuk.common.ViewVisibility
 import com.peterstaranchuk.heroes_catalog.HeroesCatalogInteractor
@@ -45,7 +45,7 @@ class HeroesCatalogViewModel(
         viewModelScope.launch(dispatchers.io) {
             try {
                 val comicsModels = interactor.fetchComics()
-                val comicsPresentation = comicsModelToPresentationMapper.mapAll(comicsModels.data)
+                val comicsPresentation = comicsModelToPresentationMapper.mapAll(comicsModels.data).filter { !it.imageUrl.toString().contains(NetworkConstants.IMAGE_NOT_AVAILABLE) }
                 viewModelScope.launch(dispatchers.main) {
                     comics.value = comicsPresentation
                     progressVisibility.gone()
