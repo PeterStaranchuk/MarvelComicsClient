@@ -8,7 +8,9 @@ class ComicsModelToPresentationMapper : Mapper<ComicsModel, ComicsPresentation> 
     override fun map(from: ComicsModel): ComicsPresentation {
         return ComicsPresentation(
             id = from.id,
-            imageUrl = from.resourceURI
+            imageUrl = /*from.images.firstOrNull()?.getUrl() ?: */from.thumbnail.getUrl(),
+            title = from.title,
+            description = from.description
         )
     }
 }

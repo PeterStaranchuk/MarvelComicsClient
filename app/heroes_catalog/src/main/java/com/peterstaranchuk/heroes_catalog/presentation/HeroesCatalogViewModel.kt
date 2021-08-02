@@ -12,7 +12,9 @@ import com.peterstaranchuk.heroes_catalog.mappers.ComicsModelToPresentationMappe
 import com.peterstaranchuk.heroes_catalog.model.HeroesCatalogErrors
 import com.peterstaranchuk.marvelheroesapp.ui.theme.NetworkHelper
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class HeroesCatalogViewModel(
     private val interactor: HeroesCatalogInteractor,
@@ -25,7 +27,7 @@ class HeroesCatalogViewModel(
     val errorStateVisibility = ViewVisibility.gone()
     val errorType = MutableStateFlow(HeroesCatalogErrors.NETWORK)
 
-    private val comics = MutableLiveData<List<ComicsPresentation>>()
+    private val comics = MutableStateFlow<List<ComicsPresentation>>(emptyList())
     private val detailPageToOpen = SingleLiveEvent<Long>()
     private val onScreenEvent = SingleLiveEvent<HeroesCatalogEvent>()
 
@@ -49,6 +51,7 @@ class HeroesCatalogViewModel(
                     progressVisibility.gone()
                 }
             } catch (e: Exception) {
+                Timber.e(e)
                 progressVisibility.gone()
                 if (networkHelper.isUserConnectedToTheInternet()) {
                     errorType.value = HeroesCatalogErrors.GENERAL
@@ -76,7 +79,7 @@ class HeroesCatalogViewModel(
         onScreenEvent.value = HeroesCatalogEvent.OPEN_CREATORS_PAGE
     }
 
-    fun observeComics() : LiveData<List<ComicsPresentation>> = comics
+    fun observeComics() : StateFlow<List<ComicsPresentation>> = comics
     fun observeScreenEvent() : LiveData<HeroesCatalogEvent> = onScreenEvent
     fun observeDetailPageOpenEvent() : LiveData<Long> = detailPageToOpen
 }

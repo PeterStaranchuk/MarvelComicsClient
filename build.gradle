@@ -28,4 +28,5 @@ ext {
     gsonVer = '2.8.5'
     coroutinesVersion = "1.5.1"
     loggingInterceptor = "3.12.1"
+    glide = "4.12.0"
 }
