@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ComposeView
@@ -29,14 +32,17 @@ class HeroesCatalogFragment : BaseFragment() {
         super.onDestroy()
     }
 
+    @ExperimentalFoundationApi
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return ComposeView(requireContext()).apply {
             setContent {
                 val comics by vm.observeComics().collectAsState()
-                LazyColumn {
-                    items(count = comics.size, { index -> index }) { index ->
-                        ItemComicsView(comicsPresentation = comics[index])
-                    }
+                Row {
+                    LazyVerticalGrid(content = {
+                        items(count = comics.size) { index ->
+                            ItemComicsView(comicsPresentation = comics[index])
+                        }
+                    }, cells = GridCells.Fixed(2))
                 }
             }
         }

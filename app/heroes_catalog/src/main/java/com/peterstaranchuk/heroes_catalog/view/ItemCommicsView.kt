@@ -3,26 +3,28 @@ package com.peterstaranchuk.heroes_catalog.view
 import android.content.res.Configuration
 import android.net.Uri
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import coil.request.ImageRequest
-import coil.request.ImageResult
 import com.peterstaranchuk.common.HttpKeys
 import com.peterstaranchuk.heroes_catalog.BuildConfig
 import com.peterstaranchuk.heroes_catalog.presentation.ComicsPresentation
 
 @Composable
 fun ItemComicsView(comicsPresentation: ComicsPresentation) {
-    Column {
+    var isExpanded by remember { mutableStateOf(false) }
+
+    Column(Modifier.clickable {
+        isExpanded = !isExpanded
+    }) {
         val url = Uri.parse(comicsPresentation.imageUrl)
             .buildUpon()
             .appendQueryParameter(HttpKeys.API_KEY, BuildConfig.API_KEY)
@@ -31,32 +33,18 @@ fun ItemComicsView(comicsPresentation: ComicsPresentation) {
             .build()
 
         Image(
-            painter = rememberImagePainter(data = url.toString(), builder = {
-
-                this.listener(object : ImageRequest.Listener {
-                    override fun onCancel(request: ImageRequest) {
-                        super.onCancel(request)
-                    }
-
-                    override fun onError(request: ImageRequest, throwable: Throwable) {
-                        super.onError(request, throwable)
-                    }
-
-                    override fun onStart(request: ImageRequest) {
-                        super.onStart(request)
-                    }
-
-                    override fun onSuccess(request: ImageRequest, metadata: ImageResult.Metadata) {
-                        super.onSuccess(request, metadata)
-                    }
-                })
-            }),
+            painter = rememberImagePainter(data = url.toString()),
+            contentScale = ContentScale.Crop,
             contentDescription = null,
             modifier = Modifier
-                .size(140.dp)
+                .aspectRatio(1f)
+                .defaultMinSize(100.dp, 100.dp)
         )
         Text(text = comicsPresentation.title)
-        Text(text = comicsPresentation.description ?: "")
+        Text(
+            text = comicsPresentation.description ?: "",
+            maxLines = if (isExpanded) Int.MAX_VALUE else 1
+        )
     }
 }
 
