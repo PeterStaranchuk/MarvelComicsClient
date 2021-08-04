@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import com.peterstaranchuk.common.BaseFragment
 import com.peterstaranchuk.heroes_catalog.heroesCatalogModule
 import com.peterstaranchuk.heroes_catalog.presentation.HeroesCatalogViewModel
@@ -37,13 +40,14 @@ class HeroesCatalogFragment : BaseFragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 val comics by vm.observeComics().collectAsState()
-                Row {
-                    LazyVerticalGrid(content = {
+                LazyVerticalGrid(
+                    content = {
                         items(count = comics.size) { index ->
-                            ItemComics(comicsPresentation = comics[index])
+                            ItemComics(comicsPresentation = comics[index], containerModifier = Modifier.padding(all = 8.dp))
                         }
-                    }, cells = GridCells.Fixed(2))
-                }
+                    },
+                    cells = GridCells.Fixed(2)
+                )
             }
         }
     }
