@@ -10,3 +10,4 @@ rootProject.name = "MarvelHeroesApp"
 include ':app'
 include ':common'
 include ':app:heroes_catalog'
+include ':app:comics_details'

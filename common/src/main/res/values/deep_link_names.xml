@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deeplink_comics_details" translatable="false">android-app://com.peterstaranchuk.marvelheroesapp/comics_details</string>
+</resources>

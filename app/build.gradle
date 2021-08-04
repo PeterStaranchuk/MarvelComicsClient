@@ -58,6 +58,7 @@ android {
 
 dependencies {
     implementation project(':app:heroes_catalog')
+    implementation project(':app:comics_details')
     implementation project(':common')
 
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -84,7 +85,6 @@ dependencies {
     implementation 'com.airbnb.android:epoxy:3.9.0'
 
     // Navigation
-    def nav_version = "2.3.5"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 

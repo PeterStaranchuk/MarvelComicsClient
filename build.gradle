@@ -29,4 +29,5 @@ ext {
     coroutinesVersion = "1.5.1"
     loggingInterceptor = "3.12.1"
     glide = "4.12.0"
+    nav_version = "2.3.5"
 }

@@ -36,7 +36,7 @@ import com.peterstaranchuk.heroes_catalog.presentation.ComicsPresentation
 
 
 @Composable
-fun ItemComics(comicsPresentation: ComicsPresentation, containerModifier: Modifier) {
+fun ItemComics(comicsPresentation: ComicsPresentation, containerModifier: Modifier, onItemClicked : () -> Unit) {
     var isExpanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
     var backgroundColor by remember { mutableStateOf(Color.White) }
@@ -44,7 +44,10 @@ fun ItemComics(comicsPresentation: ComicsPresentation, containerModifier: Modifi
 
     Column(containerModifier
         .clip(RoundedCornerShape(8.dp))
-        .clickable { isExpanded = !isExpanded }
+        .clickable {
+            onItemClicked()
+            isExpanded = !isExpanded
+        }
         .background(backgroundColor)
     ) {
         val url = Uri.parse(comicsPresentation.imageUrl)
@@ -134,6 +137,7 @@ fun Preview() {
             title = "Title",
             description = "Description"
         ),
-        Modifier
+        Modifier,
+        {}
     )
 }

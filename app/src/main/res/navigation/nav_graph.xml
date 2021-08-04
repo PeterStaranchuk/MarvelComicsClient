@@ -7,4 +7,13 @@
         android:id="@+id/heroesCatalogFragment"
         android:name="com.peterstaranchuk.heroes_catalog.view.HeroesCatalogFragment"
         android:label="HeroesCatalogFragment" />
+    <fragment
+        android:id="@+id/comicsDetailsFragment"
+        android:name="com.peterstaranchuk.comics_details.ComicsDetailsFragment"
+        android:label="ComicsDetailsFragment">
+
+        <deepLink
+            app:uri="@string/deeplink_comics_details" />
+    </fragment>
+
 </navigation>

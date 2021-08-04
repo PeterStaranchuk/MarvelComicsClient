@@ -14,7 +14,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.peterstaranchuk.common.BaseFragment
+import com.peterstaranchuk.heroes_catalog.R
 import com.peterstaranchuk.heroes_catalog.heroesCatalogModule
 import com.peterstaranchuk.heroes_catalog.presentation.HeroesCatalogViewModel
 import org.koin.core.context.loadKoinModules
@@ -43,7 +48,17 @@ class HeroesCatalogFragment : BaseFragment() {
                 LazyVerticalGrid(
                     content = {
                         items(count = comics.size) { index ->
-                            ItemComics(comicsPresentation = comics[index], containerModifier = Modifier.padding(all = 8.dp))
+                            ItemComics(
+                                comicsPresentation = comics[index],
+                                containerModifier = Modifier.padding(all = 8.dp),
+                                onItemClicked = {
+                                    val request = NavDeepLinkRequest.Builder
+                                        .fromUri(getString(R.string.deeplink_comics_details).toUri())
+                                        .build()
+
+                                    findNavController(this@HeroesCatalogFragment).navigate(request)
+                                }
+                            )
                         }
                     },
                     cells = GridCells.Fixed(2)
