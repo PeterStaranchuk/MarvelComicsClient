@@ -36,7 +36,7 @@ import com.peterstaranchuk.heroes_catalog.presentation.ComicsPresentation
 
 
 @Composable
-fun ItemComics(comicsPresentation: ComicsPresentation, containerModifier: Modifier, onItemClicked : () -> Unit) {
+fun ItemComics(comicsPresentation: ComicsPresentation, containerModifier: Modifier, onItemClicked: (comicsId: Long) -> Unit) {
     val context = LocalContext.current
     var backgroundColor by remember { mutableStateOf(Color.White) }
     var textColor by remember { mutableStateOf(Color.Black) }
@@ -44,7 +44,7 @@ fun ItemComics(comicsPresentation: ComicsPresentation, containerModifier: Modifi
     Column(containerModifier
         .clip(RoundedCornerShape(8.dp))
         .clickable {
-            onItemClicked()
+            onItemClicked(comicsPresentation.id)
         }
         .background(backgroundColor)
     ) {

@@ -1,11 +1,11 @@
 package com.peterstaranchuk.heroes_catalog.view
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -14,9 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.peterstaranchuk.common.BaseFragment
 import com.peterstaranchuk.heroes_catalog.R
@@ -51,9 +49,14 @@ class HeroesCatalogFragment : BaseFragment() {
                             ItemComics(
                                 comicsPresentation = comics[index],
                                 containerModifier = Modifier.padding(all = 8.dp),
-                                onItemClicked = {
+                                onItemClicked = { id ->
+                                    val url = Uri.parse(getString(R.string.deeplink_comics_details))
+                                        .buildUpon()
+                                        .appendQueryParameter("COMICS_ID", id.toString())
+                                        .build()
+
                                     val request = NavDeepLinkRequest.Builder
-                                        .fromUri(getString(R.string.deeplink_comics_details).toUri())
+                                        .fromUri(url)
                                         .build()
 
                                     findNavController(this@HeroesCatalogFragment).navigate(request)
