@@ -37,7 +37,6 @@ import com.peterstaranchuk.heroes_catalog.presentation.ComicsPresentation
 
 @Composable
 fun ItemComics(comicsPresentation: ComicsPresentation, containerModifier: Modifier, onItemClicked : () -> Unit) {
-    var isExpanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
     var backgroundColor by remember { mutableStateOf(Color.White) }
     var textColor by remember { mutableStateOf(Color.Black) }
@@ -46,7 +45,6 @@ fun ItemComics(comicsPresentation: ComicsPresentation, containerModifier: Modifi
         .clip(RoundedCornerShape(8.dp))
         .clickable {
             onItemClicked()
-            isExpanded = !isExpanded
         }
         .background(backgroundColor)
     ) {
@@ -103,25 +101,7 @@ fun ItemComics(comicsPresentation: ComicsPresentation, containerModifier: Modifi
             fontSize = 14.sp,
             color = textColor,
             modifier = Modifier.padding(all = 4.dp),
-            maxLines = if(isExpanded) Int.MAX_VALUE else 2
-        )
-        Spacer(modifier = Modifier.height(2.dp))
-        Text(
-            text = buildAnnotatedString {
-                withStyle(style = SpanStyle(color = textColor)) {
-                    append(stringResource(R.string.item_comics_description))
-                    append(": ")
-                }
-                withStyle(style = SpanStyle(color = textColor)) {
-                    append(comicsPresentation.description ?: stringResource(R.string.item_comics_empty_description_info))
-                }
-                if (!isExpanded) {
-                    append("...")
-                }
-            },
-            maxLines = if (isExpanded) Int.MAX_VALUE else 1,
-            fontSize = 14.sp,
-            modifier = Modifier.padding(horizontal = 4.dp, vertical = 4.dp),
+            maxLines = 2
         )
     }
 }
